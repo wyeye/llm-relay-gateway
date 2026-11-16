@@ -14,13 +14,26 @@ import { RequestRecorder } from './lib/records.mjs';
 const cfg = loadConfig();
 const log = createLogger(cfg);
 for (const warning of configWarnings) log.warn(warning);
-if (!cfg.upstream.baseUrl) {
-  log.error('未配置上游地址：请在 config.json 里设置 upstream.baseUrl，或设置环境变量 LRG_UPSTREAM');
-  process.stderr.write('relay-gateway: 未配置上游地址（upstream.baseUrl / LRG_UPSTREAM）\n');
+function fatal(message) {
+  log.error(message);
+  process.stderr.write(`relay-gateway: ${message}\n`);
   process.exit(1);
 }
+
+if (!cfg.upstream.baseUrl) {
+  fatal('未配置上游地址：请在 config.json 里设置 upstream.baseUrl，或设置环境变量 LRG_UPSTREAM');
+}
+let base;
+try {
+  base = new URL(cfg.upstream.baseUrl);
+} catch {
+  // 不回显完整地址：用户可能把 key 拼在了 path/query 里。
+  fatal(`上游地址不是合法 URL（upstream.baseUrl / LRG_UPSTREAM）：${String(cfg.upstream.baseUrl).slice(0, 80)}`);
+}
+if (base.protocol !== 'http:' && base.protocol !== 'https:') {
+  fatal(`上游地址只支持 http/https，当前是 ${base.protocol}`);
+}
 const recorder = new RequestRecorder(cfg, log);
-const base = new URL(cfg.upstream.baseUrl);
 const transport = base.protocol === 'https:' ? https : http;
 const agent = new transport.Agent({
   keepAlive: true,

@@ -191,10 +191,10 @@ switch (command) {
   }
   case 'log': {
     try {
-      const lines = readFileSync(join(root, 'relay-gateway.log'), 'utf8').trimEnd().split('\n');
+      const lines = readFileSync(cfg.log.path, 'utf8').trimEnd().split('\n');
       process.stdout.write(lines.slice(-Number(args[1] ?? 30)).join('\n') + '\n');
     } catch (error) {
-      process.stdout.write(`读取日志失败：${error.message}\n`);
+      process.stdout.write(`读取日志失败（${cfg.log.enabled ? cfg.log.path : '日志已关闭'}）：${error.message}\n`);
     }
     break;
   }

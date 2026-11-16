@@ -1,6 +1,6 @@
 {
   "name": "llm-relay-gateway",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": true,
   "description": "LLM 上游前置网关：透明转发 + 图片预算裁剪 + 分级重试 + 请求记录",
   "keywords": [

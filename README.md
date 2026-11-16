@@ -77,6 +77,8 @@ ZCode 通过 `~/.zcode/cli/config.json` 的 SessionStart 钩子调 `ensure.mjs` 
 | `limits.maxImagesPerRequest` | `6` | 单次请求最多几张图 |
 | `limits.maxTotalImageBytes` | `1000000` | 图片 base64 总字符上限 |
 
+其余可调项（单图上限、去重、重试次数与退避、超时、记录上限、日志级别）见 `lib/config.mjs` 里的 `DEFAULTS`，写法与上表相同。
+
 环境变量（容器部署用，优先级高于 config.json）：
 
 | 变量 | 作用 |

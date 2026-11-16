@@ -2,6 +2,14 @@
 
 格式参考 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/)，版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.0.1] - 2026-11-16
+
+### 修复
+
+- `bin/cli.mjs log` 读的是硬编码的 `relay-gateway.log`，忽略 `LRG_LOG_PATH`，导致容器内（`/data/gateway.log`）看不到日志。
+- 上游地址写错（非法 URL 或非 http/https）时直接抛 `TypeError` 堆栈；改为启动时给出明确提示并以 1 退出。
+- `ensure.mjs` 启动超时的提示补上「检查上游地址配置」。
+
 ## [1.0.0] - 2026-11-16
 
 首个公开版本。
@@ -22,4 +30,5 @@
 - Responses 协议中顶层 `input_image`（不在 `content` 数组里）的图片引用字段错位，导致裁剪时抛错并退化为原样转发。
 - `node --test test/` 在 Node 22+ 下无法解析目录；改为自动发现，并把基准脚本移出 `test/`。
 
+[1.0.1]: https://github.com/wyeye/llm-relay-gateway/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/wyeye/llm-relay-gateway/releases/tag/v1.0.0

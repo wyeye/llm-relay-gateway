@@ -37,4 +37,5 @@ while (Date.now() < deadline) {
   }
 }
 process.stderr.write(`relay-gateway 启动超时，请手动运行：node "${serverPath}"\n`);
+process.stderr.write('若提示上游地址缺失，请先配好 config.json 的 upstream.baseUrl 或 LRG_UPSTREAM\n');
 process.exit(0);
