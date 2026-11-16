@@ -1,0 +1,13 @@
+node_modules
+data
+records
+test
+bench
+config.json
+.env
+.git
+.gitignore
+*.log
+*.log.1
+*.pid
+README.md

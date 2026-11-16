@@ -1,0 +1,9 @@
+{
+  "upstream": {
+    "baseUrl": ""
+  },
+  "limits": {
+    "maxImagesPerRequest": 6,
+    "maxTotalImageBytes": 1000000
+  }
+}

@@ -1,0 +1,15 @@
+node_modules/
+data/
+records/
+*.log
+*.log.1
+*.pid
+
+# 本地上游地址与密钥等私有配置，不入库
+config.json
+.env
+
+# 系统/编辑器产物
+.DS_Store
+Thumbs.db
+coverage/

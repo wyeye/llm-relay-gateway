@@ -1,0 +1,29 @@
+services:
+  relay-gateway:
+    build: .
+    image: llm-relay-gateway:latest
+    container_name: llm-relay-gateway
+    restart: unless-stopped
+    ports:
+      # 默认只绑回环：前面挂 nginx/caddy 做 TLS 与鉴权。
+      # 要让内网其他机器直接用，改成 "8080:8080" 并自己用防火墙限制来源。
+      - "127.0.0.1:8080:8080"
+    environment:
+      # 必填：复制 .env.example 为 .env 并填写上游地址，否则 compose 会直接报错。
+      LRG_UPSTREAM: ${LRG_UPSTREAM:?请先设置 LRG_UPSTREAM（见 .env.example）}
+      # 图片预算（留空则用 config.json 里的值）
+      # LRG_PORT: "8080"
+      # LRG_HOST: 0.0.0.0
+    volumes:
+      - ./data:/data
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:8080/__gateway/status"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"

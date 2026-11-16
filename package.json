@@ -1,0 +1,29 @@
+{
+  "name": "llm-relay-gateway",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LLM 上游前置网关：透明转发 + 图片预算裁剪 + 分级重试 + 请求记录",
+  "keywords": [
+    "llm",
+    "gateway",
+    "proxy",
+    "openai",
+    "anthropic",
+    "gemini",
+    "image-budget"
+  ],
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "relay-gateway": "./bin/cli.mjs"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "status": "node bin/cli.mjs status",
+    "test": "node --test",
+    "bench": "node bench/bench.mjs"
+  }
+}
