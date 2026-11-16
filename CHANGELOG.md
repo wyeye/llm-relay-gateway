@@ -22,4 +22,4 @@
 - Responses 协议中顶层 `input_image`（不在 `content` 数组里）的图片引用字段错位，导致裁剪时抛错并退化为原样转发。
 - `node --test test/` 在 Node 22+ 下无法解析目录；改为自动发现，并把基准脚本移出 `test/`。
 
-[1.0.0]: https://github.com/
+[1.0.0]: https://github.com/wyeye/llm-relay-gateway/releases/tag/v1.0.0

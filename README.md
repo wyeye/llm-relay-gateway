@@ -1,12 +1,9 @@
 # llm-relay-gateway
 
+![CI](https://github.com/wyeye/llm-relay-gateway/actions/workflows/ci.yml/badge.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen)
-
-<!-- 发布到 GitHub 后填入 <owner>/<repo> 启用 CI 徽章：
-![CI](https://github.com/<owner>/llm-relay-gateway/actions/workflows/ci.yml/badge.svg)
--->
 
 LLM 上游中转站的前置网关：客户端 → 本网关 → 上游。零依赖，单个 Node 进程。
 
